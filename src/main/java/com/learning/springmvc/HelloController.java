@@ -6,8 +6,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 
 /**
@@ -18,19 +16,17 @@ public class HelloController {
 
     @GetMapping("/")
     public String searchView() {
-        return "search";
+        return "search.html";
     }
 
     private static final Random RANDOM = new Random();
 
     @PostMapping("/search")
     public ModelAndView searchFunctionView(@RequestParam("term") String term, ModelAndView mav) {
-        List<String> ans = new ArrayList<>();
-        for (int i = 0; i < 10; i ++) {
-            ans.add(term + " " + (RANDOM.nextInt(26) + 'a'));
-        }
-        mav.addObject("results", ans);
-        mav.setViewName("result");
+        // consider return ResponseBody for dynamic response
+
+        mav.setViewName("result.html");
+
         return mav;
     }
 }
